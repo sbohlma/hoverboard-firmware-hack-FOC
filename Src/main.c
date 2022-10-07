@@ -242,9 +242,23 @@ int main(void) {
 
   #ifdef MULTI_MODE_DRIVE
     // Wait until triggers are released
-    while((adc_buffer.l_rx2 + adc_buffer.l_tx2) >= (input1[0].min + input2[0].min)) { HAL_Delay(10); }
+    printf("Wait until triggers are released\r\n");
+    //while((adc_buffer.l_rx2 + adc_buffer.l_tx2) >= (input1[0].min + input2[0].min)) { HAL_Delay(10); }
+    while (true)
+    {
+      int i1r = adc_buffer.l_rx2;
+      int i2r = adc_buffer.l_tx2;
+      int isum = i1r + i2r;
+      int ref = input1[0].min + input2[0].min;
+      printf("i1r: %i / i2r: %i / isum: %i / ref: %i \r\n", i1r, i2r, isum, ref);
+
+      if ( isum < ref )
+        break;
+      HAL_Delay(1000);
+    }
   #endif
 
+  printf("Starting main loop\r\n");
   while(1) {
     if (buzzerTimer - buzzerTimer_prev > 16*DELAY_IN_MAIN_LOOP) {   // 1 ms = 16 ticks buzzerTimer
 
