@@ -285,6 +285,9 @@
 */
   #define CONTROL_ADC           0         // use ADC as input. Number indicates priority for dual-input. Disable CONTROL_SERIAL_USART2, FEEDBACK_SERIAL_USART2, DEBUG_SERIAL_USART2!
 
+  //#undef MOTOR_LEFT_ENA                  // Disable LEFT motor
+  #undef MOTOR_RIGHT_ENA                 // Disable RIGHT motor for board with broken mosfets (Labeled: weisses)
+  
   // #define DUAL_INPUTS                     //  ADC*(Primary) + UART(Auxiliary). Uncomment this to use Dual-inputs
   #define PRI_INPUT1            3, 0, 0, 4095, 0      // TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
   #define PRI_INPUT2            3, 0, 0, 4095, 0      // TYPE, MIN, MID, MAX, DEADBAND. See INPUT FORMAT section
